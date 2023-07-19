@@ -13,6 +13,7 @@ export default function Problems() {
   },[])
   return (
     <div>
+      <h1>Problems</h1>
       {
         problemList.map((problem)=>
         {

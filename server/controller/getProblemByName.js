@@ -3,7 +3,7 @@ import Problem from "../models/problem.js";
 export const getProblemByName=async(req,res) =>{
     const { name } = req.query;
     try{
-        console.log(name);
+      
         const problem = await Problem.findOne({ name });
         if (!problem) {
           // If no problem found with the provided name

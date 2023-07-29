@@ -8,9 +8,9 @@ if(!fs.existsSync(dirInputs)) {
     fs.mkdirSync(dirInputs,{recursive:true});
 }
 
-const generateInputFile=async(content,filepath)=>{
+const generateInputFile=async(content,filepath,i)=>{
     const jobId=path.basename(filepath).split(".")[0];
-    const filename=`${jobId}.txt`;
+    const filename=`${jobId}_${i}.txt`;
     const filePath=path.join(dirInputs,filename);
     await fs.writeFileSync(filePath,content);
     return filePath;

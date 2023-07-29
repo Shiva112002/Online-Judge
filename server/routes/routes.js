@@ -6,13 +6,15 @@
 const express=require('express');
 const {addProblem}=require('../controller/problem-controller.js');
 const {getProblems}=require('../controller/getProblem-controller.js');
-const { getProblemByName}=require('../controller/getProblemByName.js');
+const {getProblemById}=require('../controller/getProblemById.js');
+const {addTestCase}=require('../controller/testCase-controller.js');
 
 const router=express.Router();
 
 router.post('/add',addProblem);
 router.get('/problems',getProblems);
-router.get('/problemName',getProblemByName);
+router.get('/problemId',getProblemById);
+router.post('/addTestCase',addTestCase);
 
 module.exports={
     router,

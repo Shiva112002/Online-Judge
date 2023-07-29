@@ -7,6 +7,7 @@ export default function Problems() {
   useEffect(()=>{
     const list=async()=>{
     const response=await getProblems();
+    console.log(response)
     setProblemList(response);
     }
     list();
@@ -17,7 +18,7 @@ export default function Problems() {
       {
         problemList.map((problem)=>
         {
-          const link=`/problems/${problem.name}`;
+          const link=`/problems/${problem._id}`;
 
           return <div>
           <Link href={link} underline="hover">{problem.name}</Link>

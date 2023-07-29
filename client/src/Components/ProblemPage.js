@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProblemByName } from '../service/api';
+import { getProblemById } from '../service/api';
 import { styled } from '@mui/material/styles';
 import { TextField, Grid, Button } from '@mui/material';
 import axios from 'axios';
 
 export default function ProblemPage() {
-    const {problemName}=useParams();
+    const {problemId}=useParams();
     const [problem,setProblem]=useState({name:"",statement:""});
     const [code,setCode]=useState('');
     const [input,setInput]=useState('');
@@ -14,7 +14,7 @@ export default function ProblemPage() {
     useEffect(()=>{
        const getProblem=async()=>{
             // console.log(problemName);
-              const response=await getProblemByName(problemName);
+              const response=await getProblemById(problemId);
               console.log(response);
               setProblem(response);
        }
@@ -35,6 +35,20 @@ export default function ProblemPage() {
       }
     }
     console.log(code);
+    const handleSubmit=async () =>{
+      const payload={
+        language:"cpp",
+        code,
+        problemId,
+      }
+      try{
+        const {data}=await axios.post('http://localhost:8000/submit',payload)
+        console.log(data);
+        setOuput(data.output);
+      }catch(error){
+        console.log(error.message);
+      }
+    }
   return (
     <div>
     <Grid container spacing={2} style={{padding:'4%'}}>
@@ -69,7 +83,7 @@ export default function ProblemPage() {
       <Button variant="contained" color="primary" onClick={handleRun}>
         Run
       </Button>
-      <Button variant="contained" color="primary" style={{ marginLeft: '8px' }} >
+      <Button variant="contained" color="primary" style={{ marginLeft: '8px' }} onClick={handleSubmit}>
         Submit
       </Button>
       </Grid>

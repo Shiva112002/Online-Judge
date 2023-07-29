@@ -2,11 +2,11 @@
 
 const {Problem}=require('../models/problem.js');
 
- const getProblemByName=async(req,res) =>{
-    const { name } = req.query;
+ const getProblemById=async(req,res) =>{
+    const { problemId } = req.query;
     try{
-      
-        const problem = await Problem.findOne({ name });
+        console.log(problemId);
+        const problem = await Problem.findById(problemId);
         if (!problem) {
           // If no problem found with the provided name
           return res.status(404).json({ error: 'Problem not found' });
@@ -20,5 +20,5 @@ const {Problem}=require('../models/problem.js');
     }
 }
 module.exports={
-    getProblemByName,
+    getProblemById,
 }

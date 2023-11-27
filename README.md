@@ -1,1 +1,1 @@
-# Online-Judge
+# Elite Coders Online Judge
